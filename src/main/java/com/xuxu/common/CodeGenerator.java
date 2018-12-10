@@ -1,25 +1,15 @@
 package com.xuxu.common;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
-import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
-import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
-import com.baomidou.mybatisplus.generator.config.FileOutConfig;
 import com.baomidou.mybatisplus.generator.config.GlobalConfig;
-import com.baomidou.mybatisplus.generator.config.ITypeConvert;
 import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
-import com.baomidou.mybatisplus.generator.config.TemplateConfig;
-import com.baomidou.mybatisplus.generator.config.po.TableInfo;
-import com.baomidou.mybatisplus.generator.config.rules.DbColumnType;
-import com.baomidou.mybatisplus.generator.config.rules.IColumnType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 
@@ -52,7 +42,7 @@ public class CodeGenerator {
 	        
 	        // 全局配置
 	        GlobalConfig gc = new GlobalConfig();
-	        gc.setOutputDir("C://Users/Administrator/Desktop/备份/ssm/src/main/java");	//生成文件的输出目录
+	        gc.setOutputDir("E:/dev3/git-workspace/ssm/src/main/java");	//生成文件的输出目录
 	        gc.setAuthor("xuxu");					//作者
 	        gc.setFileOverride(true);				//是否覆蓋已有文件 默认值：false
 	        gc.setOpen(false);						//是否打开输出目录 默认值:true
@@ -81,7 +71,7 @@ public class CodeGenerator {
 	        // 包配置
 	        PackageConfig pc = new PackageConfig();
 //	        pc.setModuleName(scanner("模块名"));
-	        pc.setParent("com.xuxu.user");
+	        pc.setParent("com.xuxu");
 	        mpg.setPackageInfo(pc);
 
 	        // 自定义配置
@@ -114,9 +104,9 @@ public class CodeGenerator {
 //	        strategy.setSuperEntityColumns(new String[] { "test_id", "age" }); 	//自定义实体，公共字段
 //	        strategy.setEntityLombokModel(true);	//【实体】是否为lombok模型（默认 false
 	        strategy.setRestControllerStyle(true);	//生成 @RestController 控制器
-//	        strategy.setSuperControllerClass("com.baomidou.ant.common.BaseController");	//自定义继承的Controller类全称，带包名
-	        strategy.setInclude(scanner("表名"));		//需要包含的表名，允许正则表达式（与exclude二选一配置）
-//	        strategy.setInclude(new String[] { "user" }); // 需要生成的表
+	        strategy.setSuperControllerClass("com.baomidou.ant.common.BaseController");	//自定义继承的Controller类全称，带包名
+//	        strategy.setInclude(scanner("表名"));		//需要包含的表名，允许正则表达式（与exclude二选一配置）
+	        strategy.setInclude(new String[] { "user" }); // 需要生成的表可以多张表
 //	        strategy.setExclude(new String[]{"test"}); // 排除生成的表
 	        strategy.setControllerMappingHyphenStyle(true);	//驼峰转连字符
 	        strategy.setTablePrefix(pc.getModuleName() + "_");	//是否生成实体时，生成字段注解

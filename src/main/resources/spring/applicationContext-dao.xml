@@ -25,46 +25,12 @@
 		<property name="maxActive" value="10" />
 		<property name="minIdle" value="5" />
 	</bean>
-	<!-- 让spring管理sqlsessionfactory 使用mybatis和spring整合包中的 -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<!-- 数据库连接池 -->
-		<property name="dataSource" ref="dataSource" />
-		<!-- 加载mybatis的全局配置文件 -->
-		<property name="configLocation" value="classpath:mybatis/SqlMapConfig.xml" />
-		<property name="mapperLocations" value="classpath:com/xuxu/mapper/*.xml"/>
-		<property name="plugins">
-            <array>
-                <!-- 分页插件配置 -->
-                <bean id="paginationInterceptor" class="com.baomidou.mybatisplus.plugins.PaginationInterceptor">
-                    <property name="dialectType" value="mysql"/>
-                </bean>
-            </array>
-        </property>
-        <!-- 全局配置注入 -->
-        <property name="globalConfig" ref="globalConfig" /> 
+	
+	<bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
+    	<property name="dataSource" ref="dataSource"/>
 	</bean>
-	<bean id="globalConfig" class="com.baomidou.mybatisplus.entity.GlobalConfiguration">
-        <!-- 
-            AUTO->`0`("数据库ID自增")
-             INPUT->`1`(用户输入ID")
-            ID_WORKER->`2`("全局唯一ID")
-            UUID->`3`("全局唯一ID")
-        -->
-        <property name="idType" value="2" />
-        <!--
-            MYSQL->`mysql`
-            ORACLE->`oracle`
-            DB2->`db2`
-            H2->`h2`
-            HSQL->`hsql`
-            SQLITE->`sqlite`
-            POSTGRE->`postgresql`
-            SQLSERVER2005->`sqlserver2005`
-            SQLSERVER->`sqlserver`
-        -->
-        <!-- Oracle需要添加该项 -->
-        <!-- <property name="dbType" value="oracle" /> -->
-        <!-- 全局表为下划线命名设置 true -->
-        <property name="dbColumnUnderline" value="true" />
-    </bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+   		<property name="basePackage" value="com.xuxu.mapper"/>
+	</bean>
 </beans>
